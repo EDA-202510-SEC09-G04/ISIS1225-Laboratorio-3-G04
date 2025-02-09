@@ -47,3 +47,7 @@ def is_present(my_list,element, cmp_function):
             count = -1
             
         return count
+    
+    
+
+

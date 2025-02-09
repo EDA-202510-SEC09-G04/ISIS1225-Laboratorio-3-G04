@@ -35,3 +35,38 @@ def is_present(my_list,element, cmp_function):
     
     
     return -1
+
+
+
+def size(my_list):
+    
+    value = my_list['size']
+    
+    return value
+
+
+
+def add_first(my_list,element):
+    
+    lista = my_list['elements']
+    tamanio = my_list['size']
+    
+    lista.insert(0,element)
+    tamanio += 1
+    
+    
+def add_last(my_list,element):
+    
+    lista = my_list['elements']
+    tamanio = my_list['size']
+    
+    lista.append(element)
+    
+    tamanio += 1
+    
+    
+def first_element(my_list):
+    
+    lista = my_list['elements']
+    
+    return lista[0]
