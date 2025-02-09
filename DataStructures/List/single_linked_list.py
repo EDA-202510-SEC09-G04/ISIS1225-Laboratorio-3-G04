@@ -51,3 +51,44 @@ def is_present(my_list,element, cmp_function):
     
 
 
+def size(my_list):
+    
+    return my_list['size']
+
+
+def add_first(my_list,element):
+    
+    dict_element = {}
+    
+    dict_element['info'] = element
+   
+
+    
+    my_list['first'] = dict_element
+    my_list['size'] += 1
+    
+    if my_list['last'] == None:
+        
+        my_list['last'] = dict_element
+        dict_element['next'] = None
+
+    else:
+        
+        dict_element['next'] = get_element(my_list,1)
+
+
+
+
+def add_last(my_list,element):
+    
+    dict_element = {}
+    dict_element['info'] = element
+    dict_element['next'] = None
+    my_list['last']= dict_element
+    
+    my_list['size'] += 1
+    
+    
+    
+    
+    
