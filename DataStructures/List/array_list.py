@@ -59,3 +59,12 @@ def first_element(my_list):
     lista = my_list['elements']
     
     return lista[0]
+
+def is_empty(my_list):
+    if my_list["size"] == 0:
+        return True
+    else:
+        return False
+        
+def remove_first():
+    
