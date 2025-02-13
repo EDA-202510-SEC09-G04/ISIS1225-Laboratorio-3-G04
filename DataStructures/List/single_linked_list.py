@@ -71,6 +71,9 @@ def add_last(my_list,element):
         
     my_list['size'] += 1
     return my_list
+
+def first_element(my_list):
+    return my_list['first']
     
     
     
