@@ -47,7 +47,7 @@ def add_first(my_list,element):
 
     return my_list
 
-def add_last(my_list,element):
+""" def add_last(my_list,element):
     if len(my_list['elements']) == 0:
         my_list['elements'] = [None]
         
@@ -58,6 +58,16 @@ def add_last(my_list,element):
     tamanio = size(my_list)
     my_list['elements'][tamanio] = element
     my_list['size'] += 1
+    return my_list """
+
+def add_last(my_list,element):
+    
+    lista = my_list['elements']
+    tamanio = my_list['size']
+    
+    lista.append(element)
+    
+    tamanio += 1
     return my_list
 
 def first_element(my_list):
@@ -150,6 +160,13 @@ def sub_list(my_list, pos_i, num_elements):
         'size': num_elements
     }
     return sublist
+
+def is_empty(my_list):
+    if my_list["size"] == 0:
+        return True
+    else:
+        return False
+    
 """ 
 def add_first(my_list,element):
     
@@ -176,10 +193,6 @@ def first_element(my_list):
     
     return lista[0]
 
-def is_empty(my_list):
-    if my_list["size"] == 0:
-        return True
-    else:
-        return False
+
         
  """
