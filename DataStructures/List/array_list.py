@@ -66,5 +66,3 @@ def is_empty(my_list):
     else:
         return False
         
-def remove_first():
-    

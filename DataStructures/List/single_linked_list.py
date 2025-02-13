@@ -10,13 +10,24 @@ def new_list():
     return newlist
 
 
-def get_element(my_list,pos):
-    searchpos = 0 
+def get_element(my_list, pos):
+    if pos < 0 or pos >= size(my_list): 
+        raise IndexError('list index out of range')  
+    
     node = my_list["first"]
+    searchpos = 0
+    
     while searchpos < pos:
+        if node is None:
+            raise IndexError('list index out of range')
         node = node["next"]
         searchpos += 1
+
+    if node is None:
+        raise IndexError('list index out of range')
+
     return node["info"]
+
 
 
 def is_present(my_list,element, cmp_function): 
@@ -39,23 +50,21 @@ def size(my_list):
     return my_list['size']
 
 
-def add_first(my_list,element):
-    
-    dict_element = {}
-    dict_element['info'] = element
-    
-    if my_list['first'] is None:
-        my_list['first'] = dict_element
-        my_list['last'] = dict_element
-        dict_element['next'] = None
+def add_first(my_list, element):
+    dict_element = {
+        'info': element,
+        'next': my_list['first'] 
+    }
 
-    else:
-        dict_element['next'] = get_element(my_list,1)
-        my_list['first'] = dict_element
+    my_list['first'] = dict_element 
     
+    if my_list['last'] is None: 
+        my_list['last'] = dict_element
+
     my_list['size'] += 1
-        
+    
     return my_list
+
 
 
 
@@ -93,7 +102,7 @@ def is_empty(my_list):
         return False
     
 def remove_first(my_list):
-    if my_list['first'] is None:
+    if size(my_list) == 0:
         raise IndexError('list index out of range')
     
     node = my_list['first']
@@ -115,8 +124,8 @@ def remove_last(my_list):
     temp = my_list['first']
     
     if temp['next'] is None:
-        remove_first(my_list)
-        
+        return remove_first(my_list)
+    
     while temp['next']['next'] is not None:
         temp = temp['next']
         
@@ -126,6 +135,8 @@ def remove_last(my_list):
     my_list['size'] -= 1
 
     return node['info']
+
+  
     
 def insert_element(my_list,element,pos):
     if pos < 0 or pos > size(my_list):
@@ -136,9 +147,9 @@ def insert_element(my_list,element,pos):
         'next': None
     }
     if pos == 0:
-        add_first(my_list,element)
+        return add_first(my_list,element)
     elif pos == size(my_list):
-        add_last(my_list,element)
+        return add_last(my_list,element)
     else:
         temp = my_list['first']
         for i in range(pos - 1):
@@ -151,13 +162,13 @@ def insert_element(my_list,element,pos):
     return my_list
     
 def delete_element(my_list,pos):
-    if pos < 0 or pos > size(my_list):
+    if pos < 0 or pos >= size(my_list):
         raise Exception('IndexError: list index out of range')
   
     if pos == 0:
-        remove_first(my_list)
-    elif pos == size(my_list):
-        remove_last(my_list)
+        return remove_first(my_list)
+    elif pos == size(my_list) -1:
+        return remove_last(my_list)
     else:
         
         temp = my_list['first']
@@ -171,11 +182,14 @@ def delete_element(my_list,pos):
     return node['info']
 
 def change_info(my_list, pos, new_info):
-    if pos < 0 or pos > size(my_list):
+    if pos < 0 or pos >= size(my_list):
         raise Exception('IndexError: list index out of range')
     
-    node = get_element(my_list,pos)
-    node['info'] = new_info
+    node = my_list["first"]
+    for i in range(pos):
+        node = node["next"]
+
+    node["info"] = new_info 
     return my_list
 
 def exchange(my_list, pos_1, pos_2):
@@ -194,9 +208,9 @@ def exchange(my_list, pos_1, pos_2):
     return my_list
 
 def sub_list(my_list, pos_i, num_elements):
-    if pos_i < 0 or pos_i > size(my_list):
+    if pos_i < 0 or pos_i >= size(my_list):
         raise Exception('IndexError: list index out of range')
-    if pos_i + num_elements > my_list['size']:
+    if pos_i + num_elements > size(my_list):
         raise Exception('IndexError: list index out of range')
     
     node_1 = get_element(my_list,pos_i)
@@ -207,7 +221,7 @@ def sub_list(my_list, pos_i, num_elements):
         'size': num_elements,
     }
     
-    node_2 = get_element(my_list,num_elements-1)
+    node_2 = get_element(my_list,num_elements)
     sublist['last'] = node_2
         
-    return sub_list
+    return sublist
