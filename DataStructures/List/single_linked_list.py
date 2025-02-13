@@ -166,9 +166,11 @@ def delete_element(my_list,pos):
         raise Exception('IndexError: list index out of range')
   
     if pos == 0:
-        return remove_first(my_list)
+        remove_first(my_list)
+        return my_list
     elif pos == size(my_list) -1:
-        return remove_last(my_list)
+        remove_last(my_list)
+        return my_list
     else:
         
         temp = my_list['first']
@@ -179,7 +181,7 @@ def delete_element(my_list,pos):
         temp['next'] = node['next']
         
     my_list['size'] -= 1
-    return node['info']
+    return my_list
 
 def change_info(my_list, pos, new_info):
     if pos < 0 or pos >= size(my_list):
@@ -195,7 +197,7 @@ def change_info(my_list, pos, new_info):
 def exchange(my_list, pos_1, pos_2):
     if (pos_1 < 0 or pos_1 > my_list['size'] or
         pos_2 < 0 or pos_2 > my_list['size']):
-        raise Exception('IndexError: list index out of range')
+        raise Exception('list index out of range')
     
     if pos_1 == pos_2:
         return my_list

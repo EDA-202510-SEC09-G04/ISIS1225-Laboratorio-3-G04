@@ -156,7 +156,7 @@ def test_delete_element():
     lista["first"] = {"info": 1, "next": None}
     lista["last"] = lista["first"]
 
-    assert type(lt.delete_element(lista, 0)) is int
+    assert type(lt.delete_element(lista, 0)) == dict
 
 
 @handle_not_implemented
